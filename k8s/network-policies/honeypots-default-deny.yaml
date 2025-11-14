@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: honeypots-default-deny-ingress
+  namespace: honeypots
+spec:
+  podSelector: {} # selects ALL pods in honeypots
+  policyTypes:
+    - Ingress
+  ingress: [] # no allowed sources -> deny all
