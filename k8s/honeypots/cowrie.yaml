@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cowrie-honeypot
+  namespace: honeypots
+  labels:
+    app: cowrie-honeypot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cowrie-honeypot
+  template:
+    metadata:
+      labels:
+        app: cowrie-honeypot
+    spec:
+      containers:
+      - name: cowrie
+        image: cowrie/cowrie:latest
+        ports:
+          - name: ssh
+            containerPort: 2222
+          - name: telnet
+            containerPort: 2223
+        volumeMounts:
+          - name: cowrie-logs
+            mountPath: /cowrie/log
+      volumes:
+      - name: cowrie-logs
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cowrie-service
+  namespace: honeypots
+spec:
+  selector:
+    app: cowrie-honeypot
+  ports:
+    - name: ssh
+      protocol: TCP
+      port: 2222
+      targetPort: 2222
+    - name: telnet
+      protocol: TCP
+      port: 2223
+      targetPort: 2223
+  type: ClusterIP
