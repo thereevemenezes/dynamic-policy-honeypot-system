@@ -8,3 +8,4 @@ spec:
   policyTypes:
     - Ingress
   ingress: [] # no allowed sources -> deny all
+#okay
