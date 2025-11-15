@@ -1,0 +1,12 @@
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+sudo systemctl status k3s   # just confirm "active (running)", then q
+kubectl get nodes
+kubectl get pods -A
+kubectl get pods -A | grep calico
+kubectl -n honeypots get pods
+kubectl get networkpolicy -n honeypots
+kubectl run test-client --image=busybox:stable -it --restart=Never -- sh
+nc -vz cowrie-service.honeypots.svc.cluster.local 2222
+exit
+kubectl delete pod test-client
