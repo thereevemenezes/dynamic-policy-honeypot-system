@@ -1,0 +1,19 @@
+df -h        # see if any filesystem is 100% full
+sudo systemctl status k3s
+sudo journalctl -u k3s --no-pager | tail -n 40
+
+
+sudo /usr/local/bin/k3s-uninstall.sh
+sudo systemctl status k3s
+sudo rm -rf /etc/rancher /var/lib/rancher /var/lib/kubelet
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --write-kubeconfig-mode 644" sh -
+sudo kubectl get nodes
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+kubectl get nodes
+
+
+kubectl apply -f k8s/honeypots/dummy-honeypot.yaml
+kubectl apply -f k8s/honeypots/cowrie.yaml
+kubectl apply -f k8s/app/frontend-backend.yaml
+kubectl apply -f k8s/network-policies/calico-policy-only.yaml
+# or whatever file you used that gave you calico-node / calico-kube-controllers pods
