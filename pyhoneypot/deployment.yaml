@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pytrap
+  namespace: honeypots
+  labels:
+    app: pytrap
+    role: honeypot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pytrap
+  template:
+    metadata:
+      labels:
+        app: pytrap
+        role: honeypot
+    spec:
+      containers:
+      - name: pytrap
+        image: <your_dockerhub_username>/pytrap:latest
+        ports:
+        - containerPort: 2223
+        # Ensure logs go to stdout for Kubernetes + policy enforcer
+        command: ["python", "server.py"]
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pytrap-service
+  namespace: honeypots
+spec:
+  selector:
+    app: pytrap
+  ports:
+  - protocol: TCP
+    port: 2223
+    targetPort: 2223
+  type: ClusterIP
