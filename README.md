@@ -59,7 +59,7 @@ Data flow:
 ```text
 k8s/
   calico/
-    calico-install.yaml           # Calico CNI / policy engine
+    calico-policy-only.yaml           # Calico CNI / policy engine
 
   namespaces/
     honeypots-namespace.yaml      # Namespace for honeypots
