@@ -34,6 +34,14 @@ Honeypots (e.g., Cowrie) lure attackers, and a custom **Policy Enforcer** automa
 
 ---
 
+## 🧭 Operations Guide
+
+For details on how to start/stop the VM, restart k3s, and keep the system running smoothly, see:
+
+➡️ [Operational Tips & Running Smoothly](docs/running-smoothly.md)
+
+---
+
 ## 🧱 High-Level Architecture
 
 Namespaces:
