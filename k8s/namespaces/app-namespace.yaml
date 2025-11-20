@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app
+  labels:
+    project: dynamic-honeypot
+    role: application

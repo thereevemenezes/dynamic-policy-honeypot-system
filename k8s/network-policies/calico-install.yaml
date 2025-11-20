@@ -1,16 +1,16 @@
-apiVersion: operator.tigera.io/v1
-kind: Installation
-metadata:
-  name: default
-spec:
-  variant: Calico
-  registry: docker.io
-  calicoNetwork:
-    nodeAddressAutodetectionV4:
-      firstFound: true
-    linuxDataplane: Iptables
-  typha:
-    enabled: false
-  kubernetesProvider: "k8s"
-  policy:
-    enabled: true
+# apiVersion: operator.tigera.io/v1
+# kind: Installation
+# metadata:
+#   name: default
+# spec:
+#   variant: Calico
+#   registry: docker.io
+#   calicoNetwork:
+#     nodeAddressAutodetectionV4:
+#       firstFound: true
+#     linuxDataplane: Iptables
+#   typha:
+#     enabled: false
+#   kubernetesProvider: "k8s"
+#   policy:
+#     enabled: true
