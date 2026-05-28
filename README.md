@@ -100,4 +100,7 @@ scripts/
   teardown-all.sh                 # Clean teardown of demo resources
 
 requirements.txt                  # Python dependencies
+
+complete dec 2025
+
 README.md
